@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http_request/services/http_service.dart';
 
 class MovieList extends StatefulWidget {
   @override
@@ -8,6 +9,6 @@ class MovieList extends StatefulWidget {
 class _MovieListState extends State<MovieList> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold();
   }
 }
