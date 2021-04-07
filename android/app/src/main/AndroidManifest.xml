@@ -1,8 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.http_request">
-   <application
-        android:label="http_request"
-        android:icon="@mipmap/ic_launcher">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.moviedb2">
+<uses-permission android:name="android.permission.INTERNET" />
+   <application android:label="moviedb2" android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
