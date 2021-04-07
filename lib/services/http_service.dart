@@ -14,7 +14,7 @@ class HttpService {
     if (result.statusCode == HttpStatus.ok) {
       print("Sukses");
       final jsonResponse = json.decode(result.body);
-      final moviesMap = jsonResponse['result'];
+      final moviesMap = jsonResponse['results'];
       List movies = moviesMap.map((i) => Movie.fromJson(i)).toList();
       return movies;
     } else {
