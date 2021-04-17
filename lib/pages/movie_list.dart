@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:http_request/pages/movie_detail.dart';
 import 'package:http_request/services/http_service.dart';
+import 'package:page_indicator/page_indicator.dart';
 
 class MovieList extends StatefulWidget {
   @override
@@ -13,6 +14,8 @@ class _MovieListState extends State<MovieList> {
   int moviesCount;
   List movies;
   HttpService service;
+  PageController pageController =
+      PageController(viewportFraction: 1, keepPage: true);
 
   Future initialize() async {
     movies = [];
@@ -56,30 +59,82 @@ class _MovieListState extends State<MovieList> {
       ),
       body: Container(
         color: Colors.black87,
-        child: ListView.builder(
-          itemCount: (this.moviesCount == null) ? 0 : this.moviesCount,
-          itemBuilder: (context, int position) {
-            return Card(
-              color: Colors.white,
-              elevation: 2.0,
-              child: ListTile(
-                leading: CircleAvatar(
-                  radius: 27,
-                  backgroundImage: NetworkImage(
-                      'https://image.tmdb.org/t/p/original' +
-                          movies[position].posterPath.toString()),
-                ),
-                title: Text(movies[position].title),
-                subtitle:
-                    Text('Rating = ' + movies[position].voteAverage.toString()),
-                onTap: () {
-                  MaterialPageRoute route = MaterialPageRoute(
-                      builder: (_) => MovieDetail(movies[position]));
-                  Navigator.push(context, route);
-                },
-              ),
-            );
-          },
+        child: Container(
+          height: 220.0,
+          child: PageIndicatorContainer(
+            align: IndicatorAlign.bottom,
+            length: movies.take(5).length,
+            indicatorSpace: 8.0,
+            padding: const EdgeInsets.all(5.0),
+            indicatorColor: Colors.blueGrey[200],
+            indicatorSelectorColor: Colors.orangeAccent,
+            shape: IndicatorShape.circle(size: 6.0),
+            child: PageView.builder(
+              controller: pageController,
+              scrollDirection: Axis.horizontal,
+              itemCount: movies.take(5).length,
+              itemBuilder: (context, position) {
+                return InkWell(
+                  onTap: () {
+                    MaterialPageRoute route = MaterialPageRoute(
+                        builder: (_) => MovieDetail(movies[position]));
+                    Navigator.push(context, route);
+                  },
+                  child: Stack(
+                    children: <Widget>[
+                      Hero(
+                        tag: movies[position].id,
+                        child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 220.0,
+                            decoration: new BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              image: new DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                      "https://image.tmdb.org/t/p/original/" +
+                                          movies[position]
+                                              .posterPath
+                                              .toString())),
+                            )),
+                      ),
+                      Positioned(
+                          bottom: 30.0,
+                          child: Container(
+                            padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                            width: 250.0,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  movies[position].title,
+                                  style: TextStyle(
+                                      height: 1.5,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 5),
+                                  child: Text(
+                                    'Rate: ' +
+                                        movies[position].voteAverage.toString(),
+                                    style: TextStyle(
+                                      color: Colors.yellow,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 17,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
         ),
       ),
     );
