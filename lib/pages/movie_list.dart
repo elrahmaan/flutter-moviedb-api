@@ -59,13 +59,14 @@ class _MovieListState extends State<MovieList> {
       ),
       body: Container(
         color: Colors.black87,
-        child: Column(
-          children: [
+        child: ListView(
+          children: <Widget>[
             //BANNER HERO IMAGE
             Container(
               height: 220.0,
               child: PageIndicatorContainer(
                 align: IndicatorAlign.bottom,
+                //page indicator berjumlah menyesuaikan data yang diambil (5 data)
                 length: movies.take(5).length,
                 indicatorSpace: 8.0,
                 padding: const EdgeInsets.all(5.0),
@@ -75,6 +76,7 @@ class _MovieListState extends State<MovieList> {
                 child: PageView.builder(
                   controller: pageController,
                   scrollDirection: Axis.horizontal,
+                  //mengambil 5 data
                   itemCount: movies.take(5).length,
                   itemBuilder: (context, position) {
                     return InkWell(
@@ -217,6 +219,79 @@ class _MovieListState extends State<MovieList> {
                                     fontWeight: FontWeight.w700,
                                     fontSize: 15,
                                   ),
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // NOW SHOWING
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(top: 5),
+                    child: Text(
+                      "Now Showing",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 170,
+                    margin: EdgeInsets.only(top: 10, bottom: 20),
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      //mengambil 6 data
+                      itemCount: movies.take(6).length,
+                      itemBuilder: (context, position) {
+                        return InkWell(
+                          onTap: () {
+                            MaterialPageRoute route = MaterialPageRoute(
+                                builder: (_) => MovieDetail(movies[position]));
+                            Navigator.push(context, route);
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 140,
+                                width: 110,
+                                margin: EdgeInsets.only(right: 15),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: NetworkImage(
+                                        "https://image.tmdb.org/t/p/original/" +
+                                            movies[position]
+                                                .posterPath
+                                                .toString()),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: 110,
+                                child: Text(
+                                  movies[position].title,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 17,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.clip,
                                 ),
                               )
                             ],
