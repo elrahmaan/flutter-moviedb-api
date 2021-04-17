@@ -40,13 +40,13 @@ class _MovieListState extends State<MovieList> {
         title: Row(
           children: [
             Text("NSC ",
-                style: TextStyle(color: Colors.orangeAccent, fontSize: 25)),
+                style: TextStyle(color: Color(0xFFf4C10F), fontSize: 25)),
             Text(
               "Movie",
             ),
           ],
         ),
-        backgroundColor: Colors.black87,
+        backgroundColor: Color(0xFF151C26),
         actions: [
           IconButton(
             icon: Icon(
@@ -58,7 +58,7 @@ class _MovieListState extends State<MovieList> {
         ],
       ),
       body: Container(
-        color: Colors.black87,
+        color: Color(0xFF151C26),
         child: ListView(
           children: <Widget>[
             //BANNER HERO IMAGE
@@ -70,8 +70,8 @@ class _MovieListState extends State<MovieList> {
                 length: movies.take(5).length,
                 indicatorSpace: 8.0,
                 padding: const EdgeInsets.all(5.0),
-                indicatorColor: Colors.blueGrey[200],
-                indicatorSelectorColor: Colors.orangeAccent,
+                indicatorColor: Color(0xFF5a606b),
+                indicatorSelectorColor: Color(0xFFf4C10F),
                 shape: IndicatorShape.circle(size: 6.0),
                 child: PageView.builder(
                   controller: pageController,
@@ -102,6 +102,21 @@ class _MovieListState extends State<MovieList> {
                                                   .posterPath
                                                   .toString())),
                                 )),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  stops: [
+                                    0.0,
+                                    0.9
+                                  ],
+                                  colors: [
+                                    Color(0xFF151C26).withOpacity(1.0),
+                                    Color(0xFF151C26).withOpacity(0.0)
+                                  ]),
+                            ),
                           ),
                           Positioned(
                               bottom: 30.0,
