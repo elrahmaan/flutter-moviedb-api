@@ -66,19 +66,52 @@ class MovieDetail extends StatelessWidget {
                       Text(
                         movie.title,
                         style: TextStyle(
-                          color: Color(0xFFfafafa),
+                          color: Colors.white,
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Container(
-                        child: Text(
-                          'Rating ' + movie.voteAverage.toString(),
-                          style: TextStyle(
-                            color: Colors.yellow,
-                            fontSize: 22,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              //icon rating
+                              ...List.generate(
+                                5,
+                                (index) => Icon(
+                                  Icons.star,
+                                  color:
+                                      (index < (movie.voteAverage / 2).floor())
+                                          ? Colors.yellow
+                                          : Colors.white,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(
+                                top: 2, left: 4, bottom: 2, right: 4),
+                            decoration: BoxDecoration(
+                                color: Colors.yellow,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(3.0),
+                                  topRight: Radius.circular(3.0),
+                                  bottomLeft: Radius.circular(3.0),
+                                  bottomRight: Radius.circular(3.0),
+                                )),
+                            child: Text(
+                              movie.voteAverage.toString(),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w900),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -104,7 +137,7 @@ class MovieDetail extends StatelessWidget {
                 '         ' + movie.overview + ' ' + movie.overview,
                 textAlign: TextAlign.justify,
                 style: TextStyle(
-                  color: Color(0xFFfafafa).withOpacity(0.7),
+                  color: Colors.white.withOpacity(0.7),
                   fontSize: 17,
                 ),
               ),
