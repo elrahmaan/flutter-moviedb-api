@@ -29,8 +29,10 @@ class MovieDetail extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Color(0xFF151C26),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
+      extendBodyBehindAppBar: true,
       backgroundColor: Color(0xFF151C26),
       body: SingleChildScrollView(
         child: Column(
@@ -84,9 +86,29 @@ class MovieDetail extends StatelessWidget {
               ),
             ),
             Container(
-              child: Text(movie.overview),
-              padding: EdgeInsets.only(left: 16, right: 16),
-            )
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.only(left: 15),
+              child: Text(
+                "Overview",
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.7),
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(
+                  left: 15, top: 10, right: 15, bottom: 10),
+              child: Text(
+                '         ' + movie.overview + ' ' + movie.overview,
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                  color: Color(0xFFfafafa).withOpacity(0.7),
+                  fontSize: 17,
+                ),
+              ),
+            ),
           ],
         ),
       ),
