@@ -1,16 +1,15 @@
-# http_request
+# HTTP Request
 
-A new Flutter project.
+___Praktikum Pemrograman Mobile - Minggu 9___
 
-## Getting Started
+## Hasil
 
-This project is a starting point for a Flutter application.
+___Movie List___  | ___Movie Detail___
+------------- | -------------
+<img src = "https://github.com/room2468/09-http-request-abdulrahmansaleh01/blob/master/result/1%20-%20list%20movie%20(home).JPG" width="248">  | <img src = "https://github.com/room2468/09-http-request-abdulrahmansaleh01/blob/master/result/2%20-%20detail%20movie.JPG" width="250">
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Demo
+<img src = "https://github.com/room2468/09-http-request-abdulrahmansaleh01/blob/master/result/demo.gif" width="250">
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- - - -
