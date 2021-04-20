@@ -41,9 +41,7 @@ class _MovieListState extends State<MovieList> {
           children: [
             Text("NSC ",
                 style: TextStyle(color: Color(0xFFf4C10F), fontSize: 25)),
-            Text(
-              "Movie",
-            ),
+            Text("Movie", style: TextStyle(fontSize: 25)),
           ],
         ),
         backgroundColor: Color(0xFF151C26),
